@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+/* Parent Container */
+#parent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Space between cards */
+  padding: 20px;
+}
+
+/* Individual Card */
+#parent > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 15px;
+  transition: transform 0.3s ease;
+}
+
+#parent > div:hover {
+  transform: scale(1.05);
+}
+
+/* Image Styling */
+#parent img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+/* Title and Category */
+#parent > div > div:nth-child(2) {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin: 5px 0;
+  text-align: center;
+}
+
+#parent > div > div:nth-child(3) {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Price and Rating */
+#parent > div > div:nth-child(4) {
+  font-size: 18px;
+  color: #28a745;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+#parent > div > div:nth-child(5) {
+  font-size: 14px;
+  color: #ffa41b;
+  margin-bottom: 10px;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  #parent > div {
+    width: 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  #parent > div {
+    width: 100%;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div id="parent"></div>
+
+  <script>
+    let parent=document.getElementById("parent")
+    let getdata=JSON.parse(localStorage.getItem("details"))
+    console.log(getdata)
+
+    newgetdata=getdata.map((val)=>{
+      let child=document.createElement("div")
+        let childa=document.createElement("div")
+        let childb=document.createElement("div")
+        let childc=document.createElement("div")
+        let childd=document.createElement("div")
+        let img=document.createElement("img")
+        let childe=document.createElement("div")
+        img.src=val.image
+
+        childa.innerHTML=val.id
+        childb.innerHTML=val.title
+        childc.innerHTML=val.category
+        childd.innerHTML=val.price
+        // childe.innerHTML=val.rating[0]
+        
+        
+        child.append(childa,childb,childc,childd,img)
+        parent.append(child)
+        
+    })
+  </script>
+</body>
+</html>
